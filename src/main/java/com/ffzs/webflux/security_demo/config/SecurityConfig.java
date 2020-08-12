@@ -42,12 +42,13 @@ public class SecurityConfig {
                 .build();
     }
 
-
+    //提供用于获取UserDetails的Service
     @Bean
     public ReactiveAuthenticationManager authenticationManager (MyUserDetailsService myUserdetailsService) {
         return new UserDetailsRepositoryReactiveAuthenticationManager(myUserdetailsService);
     }
 
+        /*在内存鉴权的配置写法  */
 
 //    @Bean
 //    public MapReactiveUserDetailsService userDetailsService () {

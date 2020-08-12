@@ -3,8 +3,6 @@ package com.ffzs.webflux.security_demo.service;
 import com.ffzs.webflux.security_demo.model.MyUser;
 import com.ffzs.webflux.security_demo.repository.MyUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

@@ -26,9 +26,20 @@ public class HelloController {
         return Mono.just("hello ffzs!! ");
     }
 
+    @GetMapping("role_admin")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public Mono<String> testAdmin () {
+        return Mono.just("Hello!! ADMIN role  !!");
+    }
+
+    @GetMapping("role_user")
+    @PreAuthorize("hasAnyRole('USER')")
+    public Mono<String> testUser() {
+        return Mono.just("Hello!! USER role  !!");
+    }
+
 
     @GetMapping(value = "hello", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN')")
     public Flux<String> fluxString() {
         return Flux.just("ffzs", "dz", "tony", "vincent", "sleepycat")
                 .repeat(10)

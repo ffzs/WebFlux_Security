@@ -35,8 +35,13 @@ public class MyUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Stream.of(authorities.split(","))
                 .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
+
+/*  第一个：账户没有过期
+    第二个：账户没被锁定 （是否冻结）
+    第三个：密码没有过期
+    第四个：账户是否可用（是否被删除）*/
 
     @Override
     public boolean isAccountNonExpired() {
