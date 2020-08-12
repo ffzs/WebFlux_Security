@@ -30,7 +30,7 @@ public class SecurityConfig {
 
         return http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers("/v3/api-docs", "/swagger-resources/configuration/ui",
+                .pathMatchers("/v3/api-docs/**", "/swagger-resources/configuration/ui",
                         "/swagger-resources","/swagger-resources/configuration/security",
                         "/swagger-ui.html","/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/index").permitAll()
                 .anyExchange().authenticated()

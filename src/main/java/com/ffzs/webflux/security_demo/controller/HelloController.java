@@ -1,5 +1,9 @@
 package com.ffzs.webflux.security_demo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -19,6 +23,11 @@ import java.time.Duration;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
+@SecurityScheme(
+        name = "登录",
+        type = SecuritySchemeType.HTTP,
+        scheme = "basic"
+)
 public class HelloController {
 
     @GetMapping
@@ -28,6 +37,10 @@ public class HelloController {
 
     @GetMapping("role_admin")
     @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "test role admin",
+            security = @SecurityRequirement(name = "登录"),
+            tags = {"role_admin"}
+    )
     public Mono<String> testAdmin () {
         return Mono.just("Hello!! ADMIN role  !!");
     }
